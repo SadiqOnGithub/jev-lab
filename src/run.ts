@@ -7,10 +7,11 @@ function usage(): never {
   console.log(`jev-lab — live tests for TypeSafe Jev via OpenRouter
 
 Usage:
-  npm start                 run every case
-  npm start -- --list       list case ids
-  npm start -- smoke route  run named cases
-  npm start -- --json       print raw JSON instead of a report
+  make help            list make targets
+  make                 run every case
+  make list            list case ids
+  make smoke           run one case (also: route, verify, account, count, math)
+  make json            print raw JSON instead of a report
 
 Env:
   OPENROUTER_API_KEY        required

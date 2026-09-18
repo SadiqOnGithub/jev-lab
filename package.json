@@ -6,6 +6,7 @@
   "description": "Live tests for TypeSafe Jev (System One) via OpenRouter's Decisions API",
   "scripts": {
     "start": "tsx src/run.ts",
+    "cases": "tsx src/run.ts --list",
     "test": "tsx src/run.ts",
     "typecheck": "tsc --noEmit"
   },

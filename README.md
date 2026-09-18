@@ -11,7 +11,7 @@ API with a handful of scenarios so you can see latency, cost, and answers.
 ## Setup
 
 ```bash
-npm install
+make install
 cp .env.example .env   # then paste your OpenRouter API key
 ```
 
@@ -26,10 +26,11 @@ cent.
 ## Run
 
 ```bash
-npm start                 # every case
-npm start -- --list       # ids
-npm start -- smoke route  # a subset
-npm start -- --json       # raw responses
+make help         # this list
+make              # every case
+make list         # ids
+make smoke        # one case (also: route, verify, account, count, math)
+make json         # raw responses
 ```
 
 | id | What it tests |

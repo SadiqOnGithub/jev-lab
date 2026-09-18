@@ -1,0 +1,4 @@
+# pnpm 11+ blocks dependency install scripts until they are allowlisted.
+# tsx needs esbuild's postinstall to download the native binary.
+allowBuilds:
+  esbuild: true
