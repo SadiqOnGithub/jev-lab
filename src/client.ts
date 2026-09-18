@@ -5,6 +5,14 @@ const DECISIONS_URL = 'https://openrouter.ai/api/alpha/decisions';
 
 export const MODEL = process.env.JEV_MODEL ?? '~typesafe/jev-latest';
 
+export function requireApiKey(): string {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) {
+    throw new Error('OPENROUTER_API_KEY is not set. Copy .env.example to .env and fill it in.');
+  }
+  return apiKey;
+}
+
 /**
  * Call OpenRouter's Decisions API. Jev does not speak chat/completions —
  * it answers typed questions about `state` and returns probabilities.
@@ -13,10 +21,7 @@ export async function decide(
   req: DecideRequest,
   opts: { maxRetries?: number } = {},
 ): Promise<DecideResponse> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) {
-    throw new Error('OPENROUTER_API_KEY is not set. Copy .env.example to .env and fill it in.');
-  }
+  const apiKey = requireApiKey();
 
   const retries = opts.maxRetries ?? 2;
   let lastErr: unknown;
