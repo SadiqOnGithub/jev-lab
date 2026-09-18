@@ -1,6 +1,5 @@
 import { ask } from './ask.js';
 import { decide, MODEL } from './client.js';
-import { see } from './see.js';
 import { listCases, selectCases } from './cases.js';
 import { formatResult, formatTotals } from './format.js';
 import type { Case, CaseResult } from './types.js';
@@ -13,7 +12,6 @@ Usage:
   make                 run every case
   make list            list case ids
   make ask             type a state + yes/no question
-  make see             describe a picture (vision chat model, not Jev)
   make smoke           run one case (also: route, verify, account, count, math)
   make json            print raw JSON instead of a report
 
@@ -52,10 +50,6 @@ async function main() {
   const args = process.argv.slice(2);
   if (args[0] === 'ask') {
     await ask(args.slice(1));
-    return;
-  }
-  if (args[0] === 'see') {
-    await see(args.slice(1));
     return;
   }
   if (args.includes('--help') || args.includes('-h')) usage();

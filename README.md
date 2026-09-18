@@ -29,8 +29,7 @@ cent.
 make help         # this list
 make              # every case
 make list         # ids
-make ask          # type a state + yes/no question (Jev)
-make see          # describe a picture (vision chat model, not Jev)
+make ask          # type a state + yes/no question
 make smoke        # one case (also: route, verify, account, count, math)
 make json         # raw responses
 ```
@@ -47,17 +46,8 @@ make json         # raw responses
 `count` and `math` are TypeSafe's own jaggedness notes, not quality demos.
 Keep counting and arithmetic in code; ask Jev semantic questions.
 
-`make ask` is Jev: you give a state and a yes/no (or choice/score) question, and
-it returns a probability. It will not write a paragraph.
-
-`make see` is a different model. Jev is text-in, decisions-out — no images, no
-prose. Description uses a vision chat model (`SEE_MODEL`, default
-`inclusionai/ling-3.0-flash-vl:free`):
-
-```bash
-make see
-make see IMAGE=photo.jpg
-```
+`make ask` takes a state and a yes/no (or choice/score) question and returns a
+probability. It will not write a paragraph.
 
 ## Layout
 
@@ -65,7 +55,6 @@ make see IMAGE=photo.jpg
 src/
   client.ts    OpenRouter POST /api/alpha/decisions
   ask.ts       Interactive / CLI typed question
-  see.ts       Image description via a vision chat model
   cases.ts     Scenarios
   format.ts    Terminal report
   run.ts       CLI

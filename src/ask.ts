@@ -49,14 +49,8 @@ export async function ask(args: string[]): Promise<void> {
   pnpm exec tsx src/run.ts ask --state "ticket text" --noul "Is this urgent?"
   pnpm exec tsx src/run.ts ask --state "..." --choice "Which team?" --options billing,technical,sales
   pnpm exec tsx src/run.ts ask --state "..." --score "How bad?" --levels "Low,Moderate,High"
-
-Jev cannot read images. To describe a picture, use: make see
 `);
     return;
-  }
-
-  if (has(args, '--image') || flag(args, '--image')) {
-    throw new Error('Jev cannot read images. Use `make see` to describe a picture with a vision chat model.');
   }
 
   let stateRaw = flag(args, '--state');
