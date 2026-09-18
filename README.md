@@ -3,10 +3,44 @@
 Live tests for [TypeSafe Jev](https://docs.typesafe.ai) through
 [OpenRouter's Decisions API](https://openrouter.ai/~typesafe/jev-latest).
 
-Jev is not a chat model. It takes a `state` plus typed questions and returns
-calibrated probabilities: yes/no (`noul`), a pick from options you define
-(`choice`), or a position on an ordered rubric (`score`). This repo calls that
-API with a handful of scenarios so you can see latency, cost, and answers.
+Jev is **not a chat model**. It does not write sentences, essays, or
+explanations. You send a `state` plus typed questions; it returns calibrated
+probabilities: yes/no (`noul`), a pick from options you define (`choice`), or a
+position on an ordered rubric (`score`).
+
+## Ask Jev (`make ask`)
+
+This is the interactive command. You set a **state** once, then keep asking
+questions against it. Jev answers with a **number**, not a paragraph.
+
+```bash
+make ask
+```
+
+1. Paste the state (ticket, claim, JSON). End with an empty line.
+2. At the `? ` prompt, type questions. The session stays open.
+
+```
+? Is this urgent?                         yes/no (noul) → 0.92
+? /choice Which team?
+options (comma-separated): billing,technical,sales
+? /score How frustrated?
+levels (comma-separated, low to high): Calm,Frustrated,Very angry
+? /state                                  replace the state
+? /print                                  show the state
+? /help
+? /quit
+```
+
+`0.92` means “very likely yes.” There is no written rationale.
+
+One-shot (no session):
+
+```bash
+pnpm exec tsx src/run.ts ask --state "ticket text" --noul "Is this urgent?"
+pnpm exec tsx src/run.ts ask --state "..." --choice "Which team?" --options billing,technical,sales
+pnpm exec tsx src/run.ts ask --state "..." --score "How bad?" --levels "Low,Moderate,High"
+```
 
 ## Setup
 
@@ -23,13 +57,13 @@ The key already used by `../agentic-ai` works. Jev is billed on OpenRouter at
 **$0.042 / M input tokens**, output free. Typical cases here cost well under a
 cent.
 
-## Run
+## Canned cases
 
 ```bash
 make help         # this list
 make              # every case
 make list         # ids
-make ask          # type a state + yes/no question
+make ask          # interactive question (see above)
 make smoke        # one case (also: route, verify, account, count, math)
 make json         # raw responses
 ```
@@ -45,9 +79,6 @@ make json         # raw responses
 
 `count` and `math` are TypeSafe's own jaggedness notes, not quality demos.
 Keep counting and arithmetic in code; ask Jev semantic questions.
-
-`make ask` takes a state and a yes/no (or choice/score) question and returns a
-probability. It will not write a paragraph.
 
 ## Layout
 

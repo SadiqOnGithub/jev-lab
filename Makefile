@@ -6,7 +6,7 @@ RUN := src/run.ts
 help:
 	@echo "make          run every case"
 	@echo "make list     list case ids"
-	@echo "make ask      type a state + yes/no question"
+	@echo "make ask      interactive: set state, keep asking questions"
 	@echo "make smoke    support-ticket triage"
 	@echo "make route    next-tool pick"
 	@echo "make verify   claim vs evidence"

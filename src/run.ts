@@ -11,7 +11,7 @@ Usage:
   make help            list make targets
   make                 run every case
   make list            list case ids
-  make ask             type a state + yes/no question
+  make ask             interactive: set state, keep asking questions
   make smoke           run one case (also: route, verify, account, count, math)
   make json            print raw JSON instead of a report
 
